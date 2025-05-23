@@ -3,9 +3,8 @@ import time
 
 
 def fibonacci(n):
-    """Calculate the Fibonacci number at position n (0-indexed)."""
     if n < 0:
-        raise ValueError("Input must be a non-negative integer.")
+        raise ValueError("N tiene que ser positivo.")
     elif n == 0:
         return 0
     elif n == 1:
@@ -17,22 +16,20 @@ def fibonacci(n):
         return b
 
 def fibonacci_binet(n):
-    """Calculate the Fibonacci number at position n using Binet's Formula."""
+    """Calculate the Fibonacci number at position n using Binet's Formula. Fn = ((1 + √5) / 2)^n - ((1 - √5) / 2)^n / √5 """
     if n < 0:
-        raise ValueError("Input must be a non-negative integer.")
+        raise ValueError("N tiene que ser positivo.")
     sqrt5 = math.sqrt(5)
     phi = (1 + sqrt5) / 2
     psi = (1 - sqrt5) / 2
-    return round(pow(phi, n) - pow(psi, n) / sqrt5)
+    result = (phi**n - psi**n) / sqrt5
+    return round(result)
     
 
-start_time = time.time()
-print (fibonacci(1000)) 
-print("--- %s seconds ---" % (time.time() - start_time))
-start_time = time.time()
-print (fibonacci_binet(1000))
-print("--- %s seconds ---" % (time.time() - start_time))
 
-
-# Example usage:
+# Example : 1 1 2 3 5 8 13 21 34 55
 # print(fibonacci(10))  # Output: 55
+print("Inicio")
+print(fibonacci(10))
+print(fibonacci_binet(10))
+print("Fin")
