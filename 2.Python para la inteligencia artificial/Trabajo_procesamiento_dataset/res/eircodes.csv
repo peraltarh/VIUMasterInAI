@@ -1,140 +1,161 @@
-ROUTING_KEY,REGION
-A41,BALLYBOUGHAL
-A42,GARRISTOWN
-A45,OLDTOWN
-A63,GREYSTONES
-A67,WICKLOW
-A75,CASTLEBLAYNEY
-A81,CARRICKMACROSS
-A82,KELLS
-A83,ENFIELD
-A84,ASHBOURNE
-A85,DUNSHAUGHLIN
-A86,DUNBOYNE
-A91,DUNDALK
-A92,DROGHEDA
-A94,BLACKROCK
-A96,GLENAGEARY
-A98,BRAY
-C15,NAVAN
-D01,DUBLIN 1
-D02,DUBLIN 2
-D03,DUBLIN 3
-D04,DUBLIN 4
-D05,DUBLIN 5
-D06,DUBLIN 6
-D07,DUBLIN 7
-D08,DUBLIN 8
-D09,DUBLIN 9
-D10,DUBLIN 10
-D11,DUBLIN 11
-D12,DUBLIN 12
-D13,DUBLIN 13
-D14,DUBLIN 14
-D15,DUBLIN 15
-D16,DUBLIN 16
-D17,DUBLIN 17
-D18,DUBLIN 18
-D20,DUBLIN 20
-D22,DUBLIN 22
-D24,DUBLIN 24
-D6W,DUBLIN 6W
-E21,CAHIR
-E25,CASHEL
-E32,CARRICK-ON-SUIR
-E34,TIPPERARY
-E41,THURLES
-E45,NENAGH
-E53,ROSCREA
-E91,CLONMEL
-F12,CLAREMORRIS
-F23,CASTLEBAR
-F26,BALLINA
-F28,WESTPORT
-F31,BALLINROBE
-F35,BALLYHAUNIS
-F42,ROSCOMMON
-F45,CASTLEREA
-F52,BOYLE
-F56,BALLYMOTE
-F91,SLIGO
-F92,LETTERKENNY
-F93,LIFFORD
-F94,DONEGAL
-H12,CAVAN
-H14,BELTURBET
-H16,COOTEHILL
-H18,MONAGHAN
-H23,CLONES
-H53,BALLINASLOE
-H54,TUAM
-H62,LOUGHREA
-H65,ATHENRY
-H71,CLIFDEN
-H91,GALWAY
-K32,BALBRIGGAN
-K34,SKERRIES
-K36,MALAHIDE
-K45,LUSK
-K56,RUSH
-K67,SWORDS
-K78,LUCAN
-N37,ATHLONE
-N39,LONGFORD
-N41,CARRICK-ON-SHANNON
-N91,MULLINGAR
-P12,MACROOM
-P14,CORK - CROOKSTOWN
-P17,KINSALE
-P24,COBH
-P25,MIDLETON
-P31,BALLINCOLLIG
-P32,CORK - DONOUGHMORE
-P36,YOUGHAL
-P43,CARRIGALINE
-P47,CORK - DUNMANWAY
-P51,MALLOW
-P56,CHARLEVILLE
-P61,FERMOY
-P67,MITCHELSTOWN
-P72,BANDON
-P75,BANTRY
-P81,SKIBBEREEN
-P85,CLONAKILTY
-R14,ATHY
-R21,MUINE BHEAG
-R32,PORTLAOISE
-R35,TULLAMORE
-R42,BIRR
-R45,EDENDERRY
-R51,KILDARE
-R56,CURRAGH CAMP
-R93,CARLOW
-R95,KILKENNY
-T12,CORK - BALLINHASSIG
-T23,CORK - BLARNEY
-T34,CORK - WHITECHURCH
-T45,LITTLE ISLAND
-T56,CORK - WATERGRASSHILL
-V14,SHANNON
-V15,KILRUSH
-V23,CAHERCIVEEN
-V31,LISTOWEL
-V35,KILMALLOCK
-V42,NEWCASTLE WEST
-V92,TRALEE
-V93,KILLARNEY
-V94,LIMERICK
-V95,ENNIS
-W12,NEWBRIDGE
-W23,MAYNOOTH
-W34,MONASTEREVIN
-W91,NAAS
-X35,DUNGARVAN
-X42,KILMACTHOMAS
-X91,WATERFORD
-Y14,ARKLOW
-Y21,ENNISCORTHY
-Y25,GOREY
-Y34,NEW ROSS
-Y35,WEXFORD
+﻿RoutingKey,PostTown,PostCounty
+A92,Ardee,Louth
+Y14,Arklow,Wicklow
+A84,Ashbourne,Meath
+H65,Athenry,Galway
+N37,Athlone,Westmeath
+R14,Athy,Kildare
+K32,Balbriggan,Dublin
+F26,Ballina,Mayo
+H53,Ballinasloe,Galway
+P31,Ballincollig,Cork
+F31,Ballinrobe,Mayo
+A75,Ballybay,Monaghan
+A41,Ballyboughal,Dublin
+F35,Ballyhaunis,Mayo
+F56,Ballymote,Sligo
+P72,Bandon,Cork
+P75,Bantry,Cork
+H14,Belturbet,Cavan
+R42,Birr,Offaly
+A94,Blackrock,Dublin
+A94,Booterstown,Dublin
+F52,Boyle,Roscommon
+A98,Bray,Wicklow
+V23,Caherciveen,Kerry
+E21,Cahir,Tipperary
+R93,Carlow,Carlow
+A81,Carrickmacross,Monaghan
+N41,Carrick-on-Shannon,Leitrim
+E32,Carrick-on-Suir,Tipperary
+P43,Carrigaline,Cork
+E25,Cashel,Tipperary
+F23,Castlebar,Mayo
+A75,Castleblaney,Monaghan
+F45,Castlerea,Roscommon
+H12,Cavan,Cavan
+P56,Charleville,Cork
+F12,Claremorris,Mayo
+H71,Clifden,Galway
+P85,Clonakilty,Cork
+H23,Clones,Monaghan
+E91,Clonmel,Tipperary
+P24,Cobh,Cork
+H16,Cootehill,Cavan
+T12,Cork centre,Cork
+T12,Cork southside,Cork
+T12,Passage West,Cork
+T12,Cork Airport,Cork
+T23,Cork northside,Cork
+T23,Blarney,Cork
+P14,Crookstown,Cork
+P32,Donoughmore,Cork
+P47,Dunmanway,Cork
+T56,Watergrasshill,Cork
+T34,Whitechurch,Cork
+R56,Curragh Camp,Kildare
+A63,Delgany,Wicklow
+F94,Donegal,Donegal
+A92,Drogheda,Louth
+D01,Dublin 1,Dublin
+D02,Dublin 2,Dublin
+D03,Dublin 3,Dublin
+D04,Dublin 4,Dublin
+D05,Dublin 5,Dublin
+D06,Dublin 6,Dublin
+D6W,Dublin 6W,Dublin
+D07,Dublin 7,Dublin
+D08,Dublin 8,Dublin
+D09,Dublin 9,Dublin
+D10,Dublin 10,Dublin
+D11,Dublin 11,Dublin
+D12,Dublin 12,Dublin
+D13,Dublin 13,Dublin
+D14,Dublin 14,Dublin
+D15,Dublin 15,Dublin
+D16,Dublin 16,Dublin
+D17,Dublin 17,Dublin
+D18,Dublin 18,Dublin
+D20,Dublin 20,Dublin
+D22,Dublin 22,Dublin
+D24,Dublin 24,Dublin
+A86,Dunboyne,Meath
+A91,Dundalk,Louth
+X35,Dungarvan,Waterford
+A85,Dunshaughlin,Meath
+R45,Edenderry,Meath
+A83,Enfield,Meath
+V95,Ennis,Clare
+Y21,Enniscorthy,Wexford
+P61,Fermoy,Cork
+H91,Galway,Galway
+A42,Garristown,Dublin
+A96,Glenageary,Dublin
+Y25,Gorey,Wexford
+A63,Greystones,Wicklow
+A82,Kells,Meath
+A63,Kilcoole,Wicklow
+R51,Kildare,Kildare
+R95,Kilkenny,Kilkenny
+V93,Killarney,Kerry
+X42,Kilmacthomas,Waterford
+V35,Kilmallock,Limerick
+V15,Kilrush,Clare
+A82,Kingscourt,Cavan
+P17,Kinsale,Cork
+A92,Laytown,Meath
+A92,Bettystown,Meath
+A92,Mornington,Meath
+F92,Letterkenny,Donegal
+F93,Lifford,Donegal
+V94,Limerick,Limerick
+V31,Listowel,Kerry
+T45,Little Island,Cork
+N39,Longford,Longford
+H62,Loughrea,Galway
+K78,Lucan,Dublin
+K45,Lusk,Dublin
+P12,Macroom,Cork
+K36,Malahide,Dublin
+P51,Mallow,Cork
+W23,Maynooth,Kildare
+P25,Midleton,Cork
+P67,Mitchelstown,Cork
+H18,Monaghan,Monaghan
+W34,Monasterevin,Kildare
+A94,Monkstown,Dublin
+R21,Muine Bheag,Carlow
+N91,Mullingar,Westmeath
+W91,Naas,Kildare
+C15,Navan,Meath
+E45,Nenagh,Tipperary
+Y34,New Ross,Wexford
+W12,Newbridge,Kildare
+A63,Newcastle,Wicklow
+V42,Newcastle West,Limerick
+A63,Newtownmountkennedy,Wicklow
+A45,Oldtown,Dublin
+R32,Portlaoise,Laois
+A67,Rathnew,Wicklow
+A85,Ratoath,Meath
+F42,Roscommon,Roscommon
+E53,Roscrea,Tipperary
+K56,Rush,Dublin
+V14,Shannon,Clare
+K34,Skerries,Dublin
+P81,Skibbereen,Cork
+F91,Sligo,Sligo
+A83,Summerhill,Meath
+K67,Swords,Dublin
+K67,Dublin Airport,Dublin
+E41,Thurles,Tipperary
+E34,Tipperary,Tipperary
+V92,Tralee,Kerry
+H54,Tuam,Galway
+R35,Tullamore,Offaly
+A82,Virginia,Cavan
+X91,Waterford,Waterford
+F28,Westport,Mayo
+Y35,Wexford,Wexford
+A67,Wicklow,Wicklow
+P36,Youghal,Cork
