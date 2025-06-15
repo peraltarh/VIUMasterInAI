@@ -1,0 +1,111 @@
+objectid,nombre,direccion,tipozona,so2,no2,o3,co,pm10,pm25,fecha_carg,calidad_am
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+12,Dr. Lluch,DR.LLUCH,Urbana,N/A,7.0,N/A,N/A,34.0,19.0,2025-06-15T10:00:00+00:00,Razonablemente Buena
+20,Cabanyal,CABANYAL,Urbana,N/A,8.0,N/A,N/A,46.0,24.0,2025-06-15T10:00:00+00:00,Regular
+13,Francia,AVDA.FRANCIA,Urbana,1.0,5.0,63.0,0.0,47.0,32.0,2025-06-15T10:00:00+00:00,Desfavorable
+15,Molí del Sol,MOLÍ DEL SOL,Suburbana,5.0,9.0,54.0,0.0,34.0,24.0,2025-06-15T10:00:00+00:00,Regular
+17,Universidad Politécnica,POLITÈCNIC,Suburbana,5.0,7.0,55.0,N/A,39.0,25.0,2025-06-15T10:00:00+00:00,Regular
+18,Viveros,VIVERS,Urbana,1.0,0.0,101.0,N/A,N/A,N/A,2025-06-13T19:00:00+00:00,Regular
+16,Pista de Silla,PISTA DE SILLA,Urbana,0.0,3.0,72.0,0.0,44.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+19,Centro,VALÈNCIA CENTRE,Urbana,N/A,6.0,N/A,N/A,38.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
+22,Patraix,PATRAIX,Urbana,N/A,9.0,N/A,N/A,34.0,25.0,2025-06-15T10:00:00+00:00,Regular
+14,Boulevar Sur,BULEVARD SUD,Urbana,6.0,4.0,50.0,N/A,N/A,N/A,2025-06-15T10:00:00+00:00,Buena
+21,Olivereta,OLIVERETA,Urbana,N/A,12.0,N/A,N/A,35.0,28.0,2025-06-15T10:00:00+00:00,Desfavorable
