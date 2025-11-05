@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistral 7B Web Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-loading {
+            background: #ffa726;
+            color: white;
+        }
+
+        .status-loaded {
+            background: #66bb6a;
+            color: white;
+        }
+
+        .status-error {
+            background: #ef5350;
+            color: white;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.assistant .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+
+        .message.user .message-avatar {
+            background: #667eea;
+            order: 2;
+        }
+
+        .message.assistant .message-avatar {
+            background: #764ba2;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            resize: none;
+            max-height: 120px;
+            min-height: 48px;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .send-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .send-button:hover {
+            transform: scale(1.1);
+        }
+
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .control-group input, .control-group select {
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .clear-button {
+            background: #ef5350;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .clear-button:hover {
+            background: #d32f2f;
+        }
+
+        .typing-indicator {
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .typing-indicator .message-content {
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            color: #666;
+            font-style: italic;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .typing-indicator.show {
+            display: flex;
+            animation: pulse 1.5s infinite;
+        }
+
+        .scroll-to-bottom {
+            position: sticky;
+            bottom: 10px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .scroll-button {
+            background: rgba(102, 126, 234, 0.8);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🤖 Mistral 7B Web Chat</h1>
+            <div class="status-indicator" id="statusIndicator">Loading...</div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    Hello! I'm Mistral 7B. I'm loading up and will be ready to chat with you shortly. Please wait a moment...
+                </div>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">Thinking...</div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="controls">
+                <div class="control-group">
+                    <label>Max Tokens:</label>
+                    <input type="number" id="maxTokens" value="300" min="10" max="1000">
+                </div>
+                <div class="control-group">
+                    <label>Temperature:</label>
+                    <input type="number" id="temperature" value="0.7" min="0" max="2" step="0.1">
+                </div>
+                <div class="control-group">
+                    <label>Sampling:</label>
+                    <select id="doSample">
+                        <option value="true">On</option>
+                        <option value="false">Off</option>
+                    </select>
+                </div>
+                <button class="clear-button" onclick="clearConversation()">Clear Chat</button>
+            </div>
+            
+            <form class="chat-input-form" onsubmit="sendMessage(event)">
+                <textarea 
+                    class="chat-input" 
+                    id="messageInput" 
+                    placeholder="Type your message here..." 
+                    rows="1"
+                    onkeydown="handleKeyDown(event)"
+                ></textarea>
+                <button type="submit" class="send-button" id="sendButton" disabled>
+                    ➤
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let conversationHistory = [];
+        let isModelLoaded = false;
+        let readyMessageShown = false;
+
+        // Check model status
+        function checkModelStatus() {
+            fetch('/status')
+                .then(response => response.json())
+                .then(data => {
+                    const statusIndicator = document.getElementById('statusIndicator');
+                    const sendButton = document.getElementById('sendButton');
+                    
+                    if (data.status === 'loading') {
+                        statusIndicator.textContent = 'Loading...';
+                        statusIndicator.className = 'status-indicator status-loading';
+                        sendButton.disabled = true;
+                        isModelLoaded = false;
+                    } else if (data.status === 'loaded') {
+                        statusIndicator.textContent = 'Ready';
+                        statusIndicator.className = 'status-indicator status-loaded';
+                        sendButton.disabled = false;
+                        
+                        // Show ready message only once
+                        if (!isModelLoaded && !readyMessageShown) {
+                            addMessage('assistant', 'Great! I\'m now ready to chat. What would you like to talk about?');
+                            readyMessageShown = true;
+                        }
+                        isModelLoaded = true;
+                    } else if (data.status === 'error') {
+                        statusIndicator.textContent = 'Error';
+                        statusIndicator.className = 'status-indicator status-error';
+                        sendButton.disabled = true;
+                        isModelLoaded = false;
+                        addMessage('assistant', `❌ Error loading model: ${data.message}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking status:', error);
+                });
+        }
+
+        // Add message to chat
+        function addMessage(role, content) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = role === 'user' ? '👤' : '🤖';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = content;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show/hide typing indicator
+        function showTyping(show) {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (show) {
+                typingIndicator.classList.add('show');
+            } else {
+                typingIndicator.classList.remove('show');
+            }
+            
+            // Scroll to bottom
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Send message
+        function sendMessage(event) {
+            event.preventDefault();
+            
+            if (!isModelLoaded) {
+                alert('Model is still loading. Please wait...');
+                return;
+            }
+            
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage('user', message);
+            conversationHistory.push({role: 'user', content: message});
+            
+            // Clear input
+            messageInput.value = '';
+            messageInput.style.height = 'auto';
+            
+            // Show typing indicator
+            showTyping(true);
+            
+            // Disable send button
+            document.getElementById('sendButton').disabled = true;
+            
+            // Get generation parameters
+            const maxTokens = parseInt(document.getElementById('maxTokens').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const doSample = document.getElementById('doSample').value === 'true';
+            
+            // Send to backend
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    history: conversationHistory.slice(0, -1), // Exclude the just-added message
+                    max_tokens: maxTokens,
+                    temperature: temperature,
+                    do_sample: doSample
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                showTyping(false);
+                document.getElementById('sendButton').disabled = false;
+                
+                if (data.error) {
+                    addMessage('assistant', `❌ Error: ${data.error}`);
+                } else {
+                    addMessage('assistant', data.response);
+                    conversationHistory = data.history;
+                }
+            })
+            .catch(error => {
+                showTyping(false);
+                document.getElementById('sendButton').disabled = false;
+                addMessage('assistant', `❌ Network error: ${error.message}`);
+                console.error('Error:', error);
+            });
+        }
+
+        // Handle keyboard shortcuts
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage(event);
+            }
+        }
+
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Clear conversation
+        function clearConversation() {
+            if (confirm('Are you sure you want to clear the conversation?')) {
+                conversationHistory = [];
+                const chatMessages = document.getElementById('chatMessages');
+                chatMessages.innerHTML = '';
+                addMessage('assistant', 'Conversation cleared. How can I help you?');
+            }
+        }
+
+        // Initialize
+        checkModelStatus();
+        setInterval(checkModelStatus, 5000); // Check status every 5 seconds
+    </script>
+</body>
+</html>
