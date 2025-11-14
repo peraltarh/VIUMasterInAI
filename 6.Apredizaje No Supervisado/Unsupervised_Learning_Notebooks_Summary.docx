@@ -1,0 +1,1650 @@
+# Comprehensive Guide to Unsupervised Learning Notebooks
+## Master in Artificial Intelligence - VIU
+### Course: Aprendizaje No Supervisado
+
+**Document Created:** November 14, 2025
+**Author:** Rodrigo Peralta
+**Course Materials:** T2.1 through T6 Jupyter Notebooks
+
+---
+
+## Table of Contents
+
+1. T2.1 - Partition-Based Clustering Methods
+2. T2.2 - Hierarchical Clustering Methods
+3. T2.3 - Spectral Clustering Methods
+4. T2.4 - Density-Based Clustering Methods
+5. T2.5 - Probabilistic Clustering Methods
+6. T3 - Semi-Supervised Learning Methods
+7. T4.1 - Component Analysis Methods (PCA)
+8. T4.2 - Component Analysis Methods (ICA)
+9. T5 - Other Uses of Unsupervised Learning
+10. T6 - Deep Clustering with Keras
+
+---
+
+## 1. T2.1 - Métodos de clustering basados en particiones
+
+### Overview
+This notebook introduces **partition-based clustering methods**, focusing on the K-Means algorithm and its variants. The primary goal is to understand how to group data points into distinct clusters based on similarity measures.
+
+### Learning Objectives
+- Understand the K-Means algorithm and its implementation
+- Learn how to evaluate clustering quality using various metrics
+- Apply clustering to real-world problems like digit recognition and image compression
+- Recognize the importance of data preprocessing in clustering performance
+
+### Algorithms and Techniques
+
+#### 1. K-Means Clustering
+**Definition:** An iterative algorithm that partitions n observations into k clusters, where each observation belongs to the cluster with the nearest mean (centroid).
+
+**Algorithm Steps:**
+1. Initialize k cluster centroids randomly
+2. Assign each data point to the nearest centroid
+3. Recalculate centroids as the mean of assigned points
+4. Repeat steps 2-3 until convergence
+
+**Key Parameters:**
+- `n_clusters`: Number of clusters to form
+- `max_iter`: Maximum number of iterations
+- `n_init`: Number of times the algorithm runs with different centroid seeds
+
+#### 2. Mini-Batch K-Means
+**Purpose:** Efficient variant for large datasets that uses mini-batches to reduce computation time while maintaining similar quality.
+
+**Use Case:** Image compression - reducing millions of colors to a smaller palette.
+
+### Practical Applications
+
+#### Application 1: Digit Recognition (Handwritten Digits Clustering)
+**Dataset:** Digits dataset (1,797 images of 8×8 pixel handwritten digits)
+
+**Tasks Performed:**
+1. Load the digits dataset (0-9 handwritten numbers)
+2. Apply t-SNE for dimensionality reduction (64 dimensions → 2 dimensions)
+3. Perform K-Means clustering with k=10
+4. Evaluate clustering performance using:
+   - Homogeneity score
+   - Completeness score
+   - Adjusted Mutual Information (AMI)
+   - Confusion matrix analysis
+
+**Results:** Demonstrates that preprocessing with t-SNE significantly improves clustering accuracy.
+
+#### Application 2: Image Compression
+**Dataset:** China image sample (RGB image)
+
+**Tasks Performed:**
+1. Load a natural image with millions of colors
+2. Reshape image pixels into a flat array
+3. Apply Mini-Batch K-Means with k=16 (reducing to 16 colors)
+4. Reconstruct the image with the reduced color palette
+5. Compare original vs compressed image quality
+
+**Results:** Successfully reduces image file size while maintaining visual quality.
+
+### Evaluation Metrics Explained
+
+**Homogeneity:** Measures if each cluster contains only members of a single class (ranges 0-1)
+
+**Completeness:** Measures if all members of a given class are assigned to the same cluster (ranges 0-1)
+
+**Adjusted Mutual Information (AMI):** Measures the agreement between cluster assignments and true labels, adjusted for chance.
+
+### Python Libraries Used
+- `sklearn.cluster.KMeans`
+- `sklearn.cluster.MiniBatchKMeans`
+- `sklearn.datasets.load_digits`
+- `sklearn.datasets.load_sample_image`
+- `sklearn.manifold.TSNE`
+- `sklearn.metrics` (various clustering metrics)
+- `matplotlib.pyplot`, `seaborn`, `numpy`
+
+### Key Takeaways
+1. K-Means is effective for spherical, well-separated clusters
+2. Preprocessing (especially dimensionality reduction) improves results
+3. Different distance metrics affect clustering outcomes
+4. Evaluation metrics help quantify clustering quality
+5. Mini-Batch K-Means trades slight accuracy for significant speed improvements
+
+---
+
+## 2. T2.2 - Métodos de clustering jerárquico
+
+### Overview
+This notebook explores **hierarchical clustering methods**, which create a tree-like structure (dendrogram) showing the relationships between data points at various levels of granularity.
+
+### Learning Objectives
+- Understand agglomerative (bottom-up) hierarchical clustering
+- Learn to interpret dendrograms and choose optimal cluster numbers
+- Explore different linkage methods and their effects
+- Understand distance metrics and their applications
+
+### Algorithms and Techniques
+
+#### 1. Agglomerative Hierarchical Clustering
+**Definition:** A bottom-up approach that starts with each data point as its own cluster and progressively merges the closest pairs until all points are in a single cluster.
+
+**Algorithm Steps:**
+1. Start with n clusters (one per data point)
+2. Calculate pairwise distances between all clusters
+3. Merge the two closest clusters based on linkage criterion
+4. Update distance matrix
+5. Repeat steps 2-4 until only one cluster remains
+
+#### 2. Linkage Methods
+
+**Single Linkage (Minimum Distance):**
+- Distance between clusters = minimum distance between any two points
+- Tends to create long, chain-like clusters
+- Sensitive to outliers
+
+**Complete Linkage (Maximum Distance):**
+- Distance between clusters = maximum distance between any two points
+- Tends to create compact, spherical clusters
+- More robust to outliers
+
+**Average Linkage:**
+- Distance between clusters = average distance between all pairs of points
+- Balanced approach between single and complete linkage
+
+**Ward's Method:**
+- Minimizes within-cluster variance
+- Produces more balanced, compact clusters
+- Most popular choice for many applications
+
+### Practical Applications
+
+#### Application: Clustering Synthetic 2D Data
+**Dataset:** Generated using multivariate normal distributions
+
+**Tasks Performed:**
+1. Generate synthetic data with multiple Gaussian clusters
+2. Apply hierarchical clustering with different linkage methods
+3. Create and visualize dendrograms
+4. Cut dendrogram at different heights to extract k clusters
+5. Compare results across linkage methods
+6. Calculate cophenetic correlation coefficient
+
+### Dendrogram Interpretation
+
+**Components:**
+- **Horizontal lines:** Represent clusters
+- **Vertical lines:** Represent distances at which clusters merge
+- **Height:** Indicates dissimilarity between merged clusters
+- **Cutting the tree:** Horizontal line across dendrogram determines number of clusters
+
+**How to Choose Optimal Clusters:**
+Look for the longest vertical line without any horizontal cuts - cutting here maximizes between-cluster distance.
+
+### Distance Metrics
+
+**Euclidean Distance:** √(Σ(xi - yi)²)
+- Most common for continuous numerical data
+
+**Manhattan Distance:** Σ|xi - yi|
+- Better for data with outliers
+
+**Cosine Similarity:** 1 - (x·y)/(||x|| ||y||)
+- Good for text data and high-dimensional spaces
+
+**Hamming Distance:** Number of positions where symbols differ
+- Used for categorical data
+
+### Cophenetic Correlation Coefficient
+**Purpose:** Measures how well the dendrogram preserves pairwise distances from the original data.
+
+**Interpretation:**
+- Values close to 1: Excellent representation
+- Values < 0.7: Poor fit, consider other methods
+
+### Python Libraries Used
+- `scipy.cluster.hierarchy` (dendrogram, linkage, cophenet)
+- `scipy.spatial.distance.pdist`
+- `sklearn.datasets`
+- `matplotlib.pyplot`, `numpy`
+
+### Key Takeaways
+1. Hierarchical clustering provides a complete clustering hierarchy
+2. No need to specify k in advance (unlike K-Means)
+3. Dendrograms visualize cluster relationships effectively
+4. Linkage method choice significantly affects results
+5. Ward's method typically produces the most balanced clusters
+6. Computational complexity: O(n³) - expensive for large datasets
+
+---
+
+## 3. T2.3 - Métodos de clustering espectral
+
+### Overview
+This notebook introduces **spectral clustering**, a sophisticated technique that uses graph theory and eigenvalue decomposition to find clusters in data, especially effective for non-linearly separable clusters.
+
+### Learning Objectives
+- Understand the mathematical foundations of spectral clustering
+- Learn graph-based representations of data
+- Master Laplacian matrix construction and eigenvalue decomposition
+- Apply spectral clustering to complex, non-linear cluster shapes
+
+### Algorithms and Techniques
+
+#### Spectral Clustering Algorithm (4 Steps)
+
+**Step 1: Construct Affinity Matrix (Similarity Graph)**
+Create a weighted graph where nodes are data points and edge weights represent similarity.
+
+**Methods:**
+- **Distance-based:** W[i,j] = exp(-||xi - xj||² / 2σ²)
+- **k-Nearest Neighbors:** Connect each point to its k nearest neighbors
+
+**Step 2: Compute Laplacian Matrix**
+Transform the affinity matrix into a Laplacian matrix.
+
+**Types:**
+- **Unnormalized:** L = D - W
+- **Normalized:** L = D^(-1/2) L D^(-1/2)
+
+Where:
+- W = Affinity matrix
+- D = Degree matrix (diagonal matrix with row sums of W)
+
+**Step 3: Eigenvalue Decomposition**
+Compute the first k eigenvectors of the Laplacian matrix corresponding to the k smallest eigenvalues.
+
+**Mathematical Formulation:**
+L v = λ v
+
+Where:
+- v = eigenvector
+- λ = eigenvalue
+
+**Step 4: Apply K-Means**
+Use K-Means clustering on the rows of the eigenvector matrix to obtain final cluster assignments.
+
+### Practical Applications
+
+#### Application: Manual Spectral Clustering Implementation
+**Dataset:** Simple 12-point 2D dataset
+
+**Tasks Performed:**
+1. Create affinity matrix using Gaussian kernel
+2. Construct degree matrix from affinity matrix
+3. Compute unnormalized Laplacian (L = D - W)
+4. Calculate eigenvalues and eigenvectors
+5. Select first k eigenvectors
+6. Apply K-Means on eigenvector space
+7. Visualize results and compare with direct K-Means
+
+**Comparison:**
+- Direct K-Means: May fail on non-convex clusters
+- Spectral Clustering: Succeeds on complex shapes
+
+### Mathematical Concepts
+
+#### Graph Theory in Clustering
+
+**Graph Representation:**
+- G = (V, E, W)
+- V = Vertices (data points)
+- E = Edges (connections)
+- W = Edge weights (similarities)
+
+**Graph Cut Problem:**
+Spectral clustering solves the problem of partitioning a graph into subgraphs that minimize cut weights while balancing cluster sizes.
+
+**Normalized Cut:**
+NCut(A, B) = Cut(A, B)/Vol(A) + Cut(A, B)/Vol(B)
+
+Where:
+- Cut(A, B) = sum of edge weights between clusters A and B
+- Vol(A) = sum of all edge weights in cluster A
+
+#### Why Eigenvalues Matter
+
+**Spectral Gap:** The gap between consecutive eigenvalues indicates natural cluster boundaries.
+
+**Dimensionality Reduction:** Eigenspace provides a transformed space where clusters are more separable.
+
+### Python Libraries Used
+- `sklearn.cluster.SpectralClustering`
+- `sklearn.metrics.pairwise_distances`
+- `numpy.linalg.eig` (eigenvalue decomposition)
+- `networkx` (graph visualization)
+- `matplotlib.pyplot`, `seaborn`
+
+### Key Takeaways
+1. Spectral clustering excels at non-convex cluster shapes
+2. Graph-based approach captures complex relationships
+3. Eigenvalue decomposition provides optimal low-dimensional embedding
+4. More computationally expensive than K-Means (O(n³))
+5. Parameter selection (σ, k) critically affects results
+6. Can find clusters that traditional methods miss
+
+---
+
+## 4. T2.4 - Métodos de clustering basados en densidad
+
+### Overview
+This notebook covers **density-based clustering methods** that identify clusters as high-density regions separated by low-density regions, making them robust to noise and capable of finding arbitrarily shaped clusters.
+
+### Learning Objectives
+- Understand density-based clustering concepts
+- Master DBSCAN algorithm and parameter tuning
+- Learn Mean-Shift algorithm for mode-seeking
+- Handle noise and outliers effectively
+
+### Algorithms and Techniques
+
+#### 1. DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+
+**Core Concepts:**
+
+**ε (Epsilon):** Maximum distance between two points to be considered neighbors
+
+**MinPts:** Minimum number of points required to form a dense region
+
+**Point Classifications:**
+- **Core Point:** Has at least MinPts neighbors within ε distance
+- **Border Point:** Within ε distance of a core point but has < MinPts neighbors
+- **Noise Point:** Neither core nor border point (outlier)
+
+**Algorithm Steps:**
+1. Select an arbitrary unvisited point
+2. Find all points within ε distance
+3. If point is core (≥ MinPts neighbors), start a cluster
+4. Add all density-reachable points to cluster
+5. Mark point as visited
+6. Repeat until all points are visited
+
+**Key Parameters:**
+- `eps`: Neighborhood radius
+- `min_samples`: Minimum points to form dense region
+
+#### 2. Mean-Shift Clustering
+
+**Definition:** A mode-seeking algorithm that identifies cluster centers by iteratively shifting data points toward regions of higher density.
+
+**Algorithm Steps:**
+1. Place a window around each data point
+2. Calculate mean of points within window
+3. Shift window to the mean position
+4. Repeat until convergence
+5. Points converging to same location form a cluster
+
+**Key Parameter:**
+- `bandwidth`: Size of the sliding window
+
+### Practical Applications
+
+#### Application 1: DBSCAN on Non-Spherical Clusters
+**Dataset:** Synthetic blob data transformed to create non-spherical shapes
+
+**Tasks Performed:**
+1. Generate synthetic data with multiple clusters
+2. Apply transformations (stretching, rotation) to create non-spherical shapes
+3. Compare K-Means vs DBSCAN performance
+4. Tune DBSCAN parameters (eps, min_samples)
+5. Identify and visualize noise points
+6. Evaluate clustering quality
+
+**Results:**
+- K-Means: Struggles with non-spherical shapes
+- DBSCAN: Successfully identifies complex cluster shapes and outliers
+
+#### Application 2: Parameter Selection for DBSCAN
+
+**Epsilon Selection Methods:**
+1. **k-distance graph:** Plot sorted k-nearest neighbor distances, look for "elbow"
+2. **Domain knowledge:** Use understanding of data scale
+3. **Trial and error:** Test multiple values and evaluate
+
+**MinPts Selection Guidelines:**
+- Minimum: dimensionality + 1
+- Common choice: 2 × dimensionality
+- Higher values: More conservative clustering (fewer, larger clusters)
+
+### Advantages Over Partition-Based Methods
+
+**DBSCAN Strengths:**
+1. Discovers clusters of arbitrary shape
+2. No need to specify number of clusters a priori
+3. Robust to outliers (explicitly identifies noise)
+4. No assumption about cluster distribution
+
+**DBSCAN Limitations:**
+1. Sensitive to parameter selection
+2. Struggles with varying density clusters
+3. High-dimensional data challenges (curse of dimensionality)
+
+### Python Libraries Used
+- `sklearn.cluster.DBSCAN`
+- `sklearn.cluster.MeanShift`
+- `sklearn.datasets.make_blobs`
+- `sklearn.preprocessing.StandardScaler`
+- `matplotlib.pyplot`, `numpy`
+
+### Key Takeaways
+1. Density-based clustering doesn't assume cluster shape
+2. DBSCAN automatically detects outliers
+3. Parameter tuning is critical for performance
+4. Mean-Shift doesn't require specifying number of clusters
+5. Ideal for spatial data and datasets with noise
+6. Computational complexity: O(n log n) with spatial indexing
+
+---
+
+## 5. T2.5 - Métodos de clustering probabilísticos
+
+### Overview
+This notebook explores **probabilistic clustering methods**, particularly Gaussian Mixture Models (GMM), which model data as a mixture of probability distributions and provide soft cluster assignments.
+
+### Learning Objectives
+- Understand probabilistic modeling for clustering
+- Master Gaussian Mixture Models (GMM) theory and implementation
+- Learn the Expectation-Maximization (EM) algorithm
+- Compare soft vs hard clustering approaches
+
+### Algorithms and Techniques
+
+#### 1. Gaussian Mixture Models (GMM)
+
+**Mathematical Foundation:**
+A GMM assumes data is generated from a mixture of k Gaussian distributions:
+
+p(x) = Σ(k=1 to K) πk N(x | μk, Σk)
+
+Where:
+- πk = mixing coefficient (weight) for component k
+- N(x | μk, Σk) = Gaussian distribution with mean μk and covariance Σk
+- Σ πk = 1
+
+**Parameters to Estimate:**
+- μk: Mean vectors for each component
+- Σk: Covariance matrices for each component
+- πk: Mixing coefficients (prior probabilities)
+
+#### 2. Expectation-Maximization (EM) Algorithm
+
+**Purpose:** Iteratively estimates GMM parameters when cluster assignments are unknown.
+
+**Algorithm Steps:**
+
+**Initialization:**
+- Randomly initialize parameters (μ, Σ, π)
+
+**E-Step (Expectation):**
+Calculate responsibility (posterior probability) that component k generated point i:
+
+γ(zik) = πk N(xi | μk, Σk) / Σj πj N(xi | μj, Σj)
+
+**M-Step (Maximization):**
+Update parameters using responsibilities:
+- μk = Σi γ(zik)xi / Σi γ(zik)
+- Σk = Σi γ(zik)(xi - μk)(xi - μk)ᵀ / Σi γ(zik)
+- πk = Σi γ(zik) / n
+
+**Convergence:**
+Repeat E and M steps until log-likelihood converges or maximum iterations reached.
+
+### Covariance Matrix Types
+
+**Full Covariance:**
+- Each component has its own unconstrained covariance matrix
+- Most flexible, captures correlations
+- Parameters: k × d × d
+
+**Tied Covariance:**
+- All components share the same covariance matrix
+- Assumes same shape for all clusters
+- Parameters: 1 × d × d
+
+**Diagonal Covariance:**
+- Covariance matrix is diagonal (no correlations)
+- Assumes features are independent
+- Parameters: k × d
+
+**Spherical Covariance:**
+- Diagonal with same variance for all dimensions
+- Most constrained, assumes spherical clusters
+- Parameters: k × 1
+
+### Model Selection
+
+#### Akaike Information Criterion (AIC)
+AIC = 2k - 2ln(L)
+
+Where:
+- k = number of parameters
+- L = likelihood
+
+**Lower is better.** Balances fit quality with model complexity.
+
+#### Bayesian Information Criterion (BIC)
+BIC = k×ln(n) - 2ln(L)
+
+Where:
+- n = number of data points
+- k = number of parameters
+- L = likelihood
+
+**Lower is better.** More heavily penalizes complex models than AIC.
+
+### Practical Applications
+
+#### Application 1: GMM vs K-Means Comparison
+**Dataset:** Stretched and overlapping Gaussian clusters
+
+**Tasks Performed:**
+1. Generate synthetic data with elliptical, overlapping clusters
+2. Apply K-Means clustering
+3. Apply GMM with full covariance
+4. Compare cluster boundaries and assignments
+5. Visualize probability contours for GMM
+
+**Results:**
+- K-Means: Creates spherical boundaries, struggles with elliptical clusters
+- GMM: Adapts to true cluster shapes, provides probabilistic assignments
+
+#### Application 2: Model Selection Using Information Criteria
+**Tasks Performed:**
+1. Fit GMMs with varying numbers of components (k=1 to 10)
+2. Calculate AIC and BIC for each model
+3. Plot information criteria vs number of components
+4. Select optimal k based on minimum AIC/BIC
+5. Validate choice against true cluster structure
+
+### Soft vs Hard Clustering
+
+**Hard Clustering (K-Means):**
+- Each point belongs to exactly one cluster
+- Provides definitive assignments
+- No uncertainty quantification
+
+**Soft Clustering (GMM):**
+- Each point has probability of belonging to each cluster
+- Captures uncertainty in assignments
+- Useful for overlapping clusters
+- Can extract cluster membership probabilities
+
+### Python Libraries Used
+- `sklearn.mixture.GaussianMixture`
+- `sklearn.cluster.KMeans` (for comparison)
+- `sklearn.datasets.make_blobs`
+- `matplotlib.pyplot`, `numpy`, `scipy.stats`
+
+### Key Takeaways
+1. GMM provides probabilistic cluster assignments
+2. EM algorithm enables parameter estimation with hidden variables
+3. Covariance structure affects model flexibility and complexity
+4. AIC/BIC help select optimal number of components
+5. GMM handles elliptical and overlapping clusters better than K-Means
+6. Can suffer from local optima (sensitive to initialization)
+7. Computational complexity: O(n×k×d²×iterations)
+
+---
+
+## 6. T3 - Métodos de aprendizaje semi-supervisado
+
+### Overview
+This notebook introduces **semi-supervised learning**, a paradigm that leverages both labeled and unlabeled data to improve model performance when labeled data is scarce or expensive to obtain.
+
+### Learning Objectives
+- Understand semi-supervised learning principles
+- Learn to combine labeled and unlabeled data effectively
+- Implement self-training and EM-based approaches
+- Apply semi-supervised methods to text classification
+
+### Theoretical Foundation
+
+#### Semi-Supervised Learning Paradigm
+
+**Scenario:**
+- Small amount of labeled data: {(x₁, y₁), ..., (xₗ, yₗ)}
+- Large amount of unlabeled data: {xₗ₊₁, ..., xₙ}
+- Goal: Use both to train better classifier than using labeled data alone
+
+**Key Assumption:**
+The underlying data distribution revealed by unlabeled data should be consistent with the labeled data patterns.
+
+**Why It Works:**
+1. **Smoothness:** Points close together likely share same label
+2. **Cluster assumption:** Data forms distinct clusters, points in same cluster share label
+3. **Manifold assumption:** Data lies on lower-dimensional manifold
+
+### Algorithms and Techniques
+
+#### 1. Self-Training
+
+**Algorithm Steps:**
+1. Train classifier on labeled data
+2. Use classifier to predict labels for unlabeled data
+3. Add most confident predictions to labeled set
+4. Retrain classifier
+5. Repeat until convergence or stopping criterion
+
+**Confidence Threshold:**
+Only add predictions with confidence > threshold (e.g., 0.9)
+
+#### 2. Semi-Supervised Naive Bayes with EM
+
+**Naive Bayes Foundation:**
+P(y|x) = P(x|y)P(y) / P(x)
+
+**EM Enhancement:**
+
+**E-Step:**
+Calculate expected class membership for unlabeled data:
+P(y|x) ∝ P(x|y)P(y)
+
+**M-Step:**
+Update model parameters using both:
+- Actual labels from labeled data
+- Expected labels from unlabeled data
+
+**Iterative Process:**
+Repeat E and M steps until likelihood converges.
+
+### Practical Applications
+
+#### Application: Text Classification on 20 Newsgroups
+**Dataset:** 20 Newsgroups (subset: comp.graphics vs sci.med)
+
+**Scenario:**
+- Limited labeled examples (e.g., 100 documents)
+- Large unlabeled corpus (e.g., 10,000 documents)
+- Goal: Improve classification accuracy using unlabeled data
+
+**Tasks Performed:**
+1. **Data Preparation:**
+   - Load 20 Newsgroups dataset
+   - Select two categories for binary classification
+   - Split into labeled (small) and unlabeled (large) sets
+   - Create test set for evaluation
+
+2. **Feature Extraction:**
+   - Apply TF-IDF vectorization
+   - Convert text to numerical features
+   - Remove stop words
+   - Normalize feature vectors
+
+3. **Baseline Model:**
+   - Train Naive Bayes on labeled data only
+   - Evaluate accuracy on test set
+   - Record baseline performance
+
+4. **Semi-Supervised Enhancement:**
+   - Implement EM algorithm for semi-supervised learning
+   - Iteratively improve using unlabeled data
+   - Track performance across iterations
+
+5. **Performance Analysis:**
+   - Compare supervised vs semi-supervised accuracy
+   - Visualize learning curves
+   - Analyze improvement gained from unlabeled data
+
+**Results:**
+Semi-supervised approach typically shows 5-15% accuracy improvement over supervised baseline when labeled data is limited.
+
+### TF-IDF (Term Frequency-Inverse Document Frequency)
+
+**Purpose:** Represents text as numerical vectors while emphasizing important words.
+
+**Formula:**
+TF-IDF(t, d) = TF(t, d) × IDF(t)
+
+Where:
+- TF(t, d) = frequency of term t in document d
+- IDF(t) = log(N / df(t))
+- N = total number of documents
+- df(t) = number of documents containing term t
+
+**Effect:**
+- High weight: Words frequent in document but rare in corpus
+- Low weight: Common words (stopwords) or very rare words
+
+### Performance Metrics
+
+**Accuracy:** (TP + TN) / (TP + TN + FP + FN)
+
+**Precision:** TP / (TP + FP)
+- Of predicted positives, how many are correct?
+
+**Recall:** TP / (TP + FN)
+- Of actual positives, how many did we find?
+
+**F1 Score:** 2 × (Precision × Recall) / (Precision + Recall)
+- Harmonic mean balancing precision and recall
+
+### Python Libraries Used
+- `sklearn.datasets.fetch_20newsgroups`
+- `sklearn.feature_extraction.text.TfidfVectorizer`
+- `sklearn.naive_bayes.MultinomialNB`
+- `sklearn.model_selection.train_test_split`
+- `sklearn.metrics` (accuracy_score, classification_report)
+- `matplotlib.pyplot`, `seaborn`, `numpy`
+
+### Key Takeaways
+1. Semi-supervised learning reduces need for labeled data
+2. Unlabeled data helps when labeled data is scarce
+3. EM algorithm naturally extends to semi-supervised scenarios
+4. Most effective when unlabeled data >> labeled data
+5. Performance depends on data distribution assumptions
+6. Can lead to degradation if assumptions violated
+7. Particularly useful for text classification and NLP tasks
+
+---
+
+## 7. T4.1 - Métodos de análisis de componentes - PCA
+
+### Overview
+This notebook covers **Principal Component Analysis (PCA)**, the most widely used linear dimensionality reduction technique that transforms data into a new coordinate system where axes capture maximum variance.
+
+### Learning Objectives
+- Understand PCA mathematical foundations
+- Implement PCA from scratch using eigenvalue decomposition
+- Learn when and why to use dimensionality reduction
+- Apply PCA using scikit-learn
+- Interpret principal components and explained variance
+
+### Theoretical Foundation
+
+#### The Curse of Dimensionality
+
+**Problem:**
+- High-dimensional data (many features)
+- Computational complexity increases exponentially
+- Visualization becomes impossible
+- Overfitting risk increases
+- Many features may be redundant or correlated
+
+**Solution:**
+Reduce dimensions while preserving maximum information (variance).
+
+#### PCA Objectives
+
+**Goal:** Find orthogonal axes (principal components) that:
+1. Maximize variance along each axis
+2. Are uncorrelated with each other
+3. Ordered by variance explained
+
+**Mathematical Formulation:**
+Find projection matrix W that maximizes:
+
+Var(Wx) = WᵀΣW
+
+Subject to: WᵀW = I (orthonormality constraint)
+
+Where Σ is the covariance matrix.
+
+### PCA Algorithm (Step-by-Step)
+
+#### Step 1: Center the Data
+X_centered = X - mean(X)
+
+**Why:** PCA is affected by data location; centering removes translation effects.
+
+#### Step 2: Compute Covariance Matrix
+Σ = (1/n) XᵀX
+
+**Interpretation:**
+- Σ[i,j] measures how features i and j vary together
+- Diagonal: feature variances
+- Off-diagonal: feature covariances
+
+#### Step 3: Eigenvalue Decomposition
+Solve: Σv = λv
+
+Find:
+- Eigenvectors (v): Principal component directions
+- Eigenvalues (λ): Variance explained by each component
+
+#### Step 4: Sort by Eigenvalues
+Order eigenvectors by decreasing eigenvalues:
+λ₁ ≥ λ₂ ≥ ... ≥ λd
+
+#### Step 5: Select Components
+Choose first k eigenvectors corresponding to largest k eigenvalues.
+
+**Variance Explained:**
+Proportion = λk / Σλi
+
+#### Step 6: Project Data
+X_reduced = X_centered × W
+
+Where W contains selected eigenvectors as columns.
+
+### Practical Applications
+
+#### Application 1: Manual PCA Implementation
+**Dataset:** Simple 2D synthetic data
+
+**Tasks Performed:**
+1. Generate correlated 2D data
+2. Visualize original data distribution
+3. Calculate mean and center data
+4. Compute covariance matrix manually
+5. Perform eigenvalue decomposition
+6. Sort eigenvectors by eigenvalues
+7. Project data onto principal components
+8. Visualize transformed data
+9. Compare with scikit-learn implementation
+
+**Verification:**
+Manual implementation matches scikit-learn results exactly.
+
+#### Application 2: Dimensionality Reduction Visualization
+**Dataset:** Higher-dimensional synthetic data
+
+**Tasks Performed:**
+1. Generate high-dimensional data (e.g., 10D)
+2. Apply PCA to reduce to 2D or 3D
+3. Visualize explained variance per component
+4. Create scree plot (eigenvalues vs component number)
+5. Determine optimal number of components
+6. Analyze cumulative explained variance
+7. Interpret principal component directions
+
+### Choosing Number of Components
+
+#### Method 1: Variance Threshold
+Select k components that explain ≥ threshold (e.g., 95%) of total variance:
+
+Σ(i=1 to k) λi / Σ(i=1 to d) λi ≥ 0.95
+
+#### Method 2: Scree Plot (Elbow Method)
+Plot eigenvalues vs component number; look for "elbow" where variance gain diminishes.
+
+#### Method 3: Kaiser Criterion
+Keep components with eigenvalues > 1 (or > mean eigenvalue).
+
+### Interpreting Principal Components
+
+**Component Loadings:**
+Eigenvector elements show contribution of each original feature to the component.
+
+**Example:**
+If PC1 = [0.7, 0.7, 0.1, 0.0], then PC1 is primarily a combination of features 1 and 2.
+
+**Physical Meaning:**
+First PC: Direction of maximum variance
+Second PC: Direction of maximum remaining variance (orthogonal to first)
+
+### Data Preprocessing for PCA
+
+#### Standardization
+**Why:** Features with larger scales dominate principal components.
+
+**Formula:**
+X_standardized = (X - μ) / σ
+
+**When to use:**
+- Features have different units
+- Features have very different scales
+- Want each feature to contribute equally
+
+#### Centering Only
+**When to use:**
+- Features already on same scale
+- Want to preserve original scale interpretations
+
+### Limitations of PCA
+
+1. **Linearity:** Only captures linear relationships
+2. **Interpretability:** Components may be hard to interpret
+3. **Outlier sensitivity:** Outliers affect covariance matrix
+4. **Variance ≠ Information:** Maximum variance directions may not be most informative
+5. **Orthogonality constraint:** Components must be uncorrelated
+
+### Python Libraries Used
+- `numpy.linalg.eig` (manual eigenvalue decomposition)
+- `sklearn.decomposition.PCA`
+- `sklearn.preprocessing.StandardScaler`
+- `matplotlib.pyplot`, `numpy`
+
+### Key Takeaways
+1. PCA finds directions of maximum variance in data
+2. Reduces dimensions while preserving maximum information
+3. First principal component explains most variance
+4. Components are orthogonal (uncorrelated)
+5. Standardization important when features have different scales
+6. Useful for visualization, noise reduction, and computational efficiency
+7. Foundation for many advanced techniques (Kernel PCA, Sparse PCA)
+
+---
+
+## 8. T4.2 - Métodos de análisis de componentes - ICA
+
+### Overview
+This notebook introduces **Independent Component Analysis (ICA)**, a computational technique for separating a multivariate signal into additive, statistically independent components - particularly powerful for blind source separation problems.
+
+### Learning Objectives
+- Understand the difference between PCA and ICA
+- Learn blind source separation concepts
+- Master FastICA algorithm implementation
+- Apply ICA to signal processing problems
+- Understand statistical independence vs correlation
+
+### Theoretical Foundation
+
+#### PCA vs ICA: Key Differences
+
+**PCA (Principal Component Analysis):**
+- Goal: Find orthogonal directions of maximum variance
+- Constraint: Components must be uncorrelated
+- Assumption: Gaussian distribution
+- Output: Orthogonal components (correlation = 0)
+
+**ICA (Independent Component Analysis):**
+- Goal: Find statistically independent components
+- Constraint: Components must be independent (stronger than uncorrelated)
+- Assumption: Non-Gaussian distribution
+- Output: Independent components (mutual information = 0)
+
+**Mathematical Distinction:**
+- Uncorrelated: E[XY] = E[X]E[Y] (second-order statistics)
+- Independent: P(X,Y) = P(X)P(Y) (all orders of statistics)
+
+**Key Insight:** Independence implies uncorrelation, but uncorrelation doesn't imply independence.
+
+#### The Cocktail Party Problem
+
+**Scenario:**
+Multiple people speaking simultaneously in a room with multiple microphones.
+
+**Given:**
+- Mixed recordings: x(t) = [x₁(t), x₂(t), ..., xₙ(t)]
+- Unknown mixing process
+- Unknown source signals
+
+**Goal:**
+Recover original source signals: s(t) = [s₁(t), s₂(t), ..., sₙ(t)]
+
+**ICA Model:**
+X = AS
+
+Where:
+- X = observed mixed signals (m × n)
+- A = unknown mixing matrix
+- S = unknown source signals
+- Goal: Find unmixing matrix W such that S ≈ WX
+
+### ICA Mathematical Model
+
+#### Linear Mixing Model
+Each observation is a linear combination of sources:
+
+xⱼ = Σᵢ aⱼᵢsᵢ + noise
+
+In matrix form:
+X = AS
+
+**Assumptions:**
+1. Sources are statistically independent
+2. Sources have non-Gaussian distributions
+3. Mixing matrix A is square and invertible
+4. Number of sources ≤ number of observations
+
+#### Ambiguities in ICA
+
+**Cannot Determine:**
+1. **Order:** Source order is arbitrary
+2. **Scale:** Multiplication by constant is undetectable
+3. **Sign:** Sign flip is undetectable
+
+**Why:** If S = WX is a solution, then PS = (PWA⁻¹)(AS) = PW is also valid, where P is a permutation/scaling matrix.
+
+### FastICA Algorithm
+
+**Objective:** Maximize non-Gaussianity of projected data.
+
+**Rationale:** Central Limit Theorem states that sums of independent variables approach Gaussian distribution. Thus, maximizing non-Gaussianity recovers independent components.
+
+**Non-Gaussianity Measures:**
+
+**Kurtosis:**
+Kurt(y) = E[y⁴] - 3(E[y²])²
+
+- Gaussian: Kurt = 0
+- Heavy-tailed: Kurt > 0 (super-Gaussian)
+- Light-tailed: Kurt < 0 (sub-Gaussian)
+
+**Negentropy:**
+J(y) = H(y_gaussian) - H(y)
+
+Where H is entropy. Always non-negative; zero for Gaussian.
+
+**Algorithm Steps:**
+
+1. **Centering:** Remove mean from data
+2. **Whitening:** Transform to zero mean, unit variance, uncorrelated
+3. **Iteration:** 
+   - Initialize random weight vector w
+   - Update: w ← E[x g(wᵀx)] - E[g'(wᵀx)]w
+   - Normalize: w ← w/||w||
+   - Repeat until convergence
+4. **Deflation:** Remove found component, repeat for next component
+
+### Practical Applications
+
+#### Application 1: Separating Sinusoidal and Square Wave Signals
+**Dataset:** Artificially mixed signal sources
+
+**Signal Generation:**
+1. **Source 1:** Sinusoidal signal: s₁(t) = sin(2πft)
+2. **Source 2:** Square wave signal: s₂(t) = sign(sin(2πft))
+3. **Source 3:** Sawtooth signal: s₃(t) = 2(t - floor(t + 0.5))
+
+**Tasks Performed:**
+1. Generate independent source signals
+2. Create random mixing matrix A
+3. Mix signals: X = AS
+4. Apply FastICA to recover sources
+5. Compare recovered signals with originals
+6. Visualize mixing and unmixing process
+7. Calculate correlation between true and recovered sources
+
+**Results:**
+FastICA successfully recovers independent sources (up to scaling and permutation).
+
+#### Application 2: Handling Noisy Observations
+**Tasks Performed:**
+1. Add Gaussian noise to mixed signals
+2. Apply ICA with different noise levels
+3. Evaluate robustness to noise
+4. Compare performance metrics
+5. Determine noise tolerance limits
+
+### Preprocessing for ICA
+
+#### Centering
+X_centered = X - mean(X)
+
+**Purpose:** Simplifies ICA algorithms; doesn't affect independence.
+
+#### Whitening
+Transform data so: E[ZZᵀ] = I
+
+**Methods:**
+- PCA whitening: Z = Λ^(-1/2)EᵀX
+- ZCA whitening: Z = (XXᵀ)^(-1/2)X
+
+**Benefits:**
+1. Reduces parameter space
+2. Decorrelates components
+3. Makes all variances equal
+4. Speeds up convergence
+
+### Evaluation Metrics
+
+#### Amari Distance
+Measures quality of unmixing matrix recovery:
+
+d(A, A_est) = Σᵢ(Σⱼ|pᵢⱼ|/maxₖ|pᵢₖ| - 1) + Σⱼ(Σᵢ|pᵢⱼ|/maxₖ|pₖⱼ| - 1)
+
+Where P = W×A (should be close to permutation matrix)
+
+**Range:** [0, ∞), lower is better
+
+#### Signal-to-Interference Ratio (SIR)
+Measures separation quality for each recovered source:
+
+SIR = 10 log₁₀(||s_target||² / ||s_recovered - s_target||²)
+
+**Higher is better** (measured in dB)
+
+### Applications Beyond Signal Processing
+
+1. **Financial Data:** Separating market factors
+2. **Medical Imaging:** fMRI signal separation
+3. **Telecommunications:** Channel separation
+4. **Feature Extraction:** Finding independent features
+5. **Anomaly Detection:** Identifying unusual patterns
+
+### Python Libraries Used
+- `sklearn.decomposition.FastICA`
+- `numpy` (signal generation and processing)
+- `matplotlib.pyplot` (visualization)
+- `scipy.signal` (signal processing utilities)
+
+### Key Takeaways
+1. ICA finds statistically independent components (stronger than PCA's uncorrelated)
+2. Particularly effective for blind source separation
+3. Requires non-Gaussian source distributions
+4. FastICA maximizes non-Gaussianity efficiently
+5. Cannot determine source order, scale, or sign
+6. Whitening preprocessing improves convergence
+7. Applications extend beyond audio to many domains
+8. Complementary to PCA, not a replacement
+
+---
+
+## 9. T5 - Otros usos de aprendizaje no supervisado
+
+### Overview
+This notebook explores **advanced applications of unsupervised learning** beyond traditional clustering, focusing on graph-based image segmentation techniques, particularly the GrabCut algorithm.
+
+### Learning Objectives
+- Understand graph theory applications in computer vision
+- Learn interactive image segmentation techniques
+- Master GrabCut algorithm for foreground/background separation
+- Apply graph cuts and energy minimization to real problems
+
+### Theoretical Foundation
+
+#### Graph-Based Image Segmentation
+
+**Image as a Graph:**
+- **Nodes:** Pixels or groups of pixels
+- **Edges:** Connections between neighboring pixels
+- **Weights:** Similarity between pixels (color, texture, location)
+
+**Segmentation as Graph Cut:**
+Partition graph into disjoint subsets (foreground/background) by removing edges with minimum total weight.
+
+#### Minimum Cut / Maximum Flow
+
+**Minimum Cut Problem:**
+Find set of edges whose removal separates graph into two parts with minimum total edge weight.
+
+**Max-Flow Min-Cut Theorem:**
+The maximum flow through a network equals the minimum cut capacity.
+
+**Application to Segmentation:**
+- Source node = definite foreground
+- Sink node = definite background
+- Cut separates image into foreground and background
+
+### GrabCut Algorithm
+
+**Purpose:** Interactive foreground extraction with minimal user input.
+
+**Input:**
+- Image
+- User-provided rectangle or scribbles indicating foreground region
+
+**Output:**
+- Binary mask (foreground/background classification)
+
+**Algorithm Overview:**
+
+#### Step 1: Initialization
+User draws rectangle around object of interest.
+- Inside rectangle: probably foreground (TF)
+- Outside rectangle: definite background (TB)
+
+#### Step 2: GMM Learning
+Learn two Gaussian Mixture Models:
+- **Foreground GMM:** Models color distribution of foreground pixels
+- **Background GMM:** Models color distribution of background pixels
+
+**Typical:** k=5 Gaussian components for each GMM
+
+#### Step 3: Graph Construction
+
+**Nodes:**
+Each pixel becomes a node.
+
+**Edge Types:**
+
+**N-links (neighboring pixels):**
+Weight based on color similarity:
+w(i,j) = exp(-β||C_i - C_j||²) × 1/dist(i,j)
+
+Where:
+- C_i, C_j = pixel colors
+- β = contrast parameter
+- dist = spatial distance
+
+**T-links (terminal links):**
+- Source (foreground): -log P(C_i | foreground GMM)
+- Sink (background): -log P(C_i | background GMM)
+
+#### Step 4: Min-Cut / Max-Flow
+Apply graph cut algorithm to find optimal segmentation.
+
+**Energy Minimization:**
+E = Σ_pixels U(pixel) + λΣ_neighbors V(i,j)
+
+Where:
+- U = data term (GMM likelihood)
+- V = smoothness term (edge weights)
+- λ = relative importance
+
+#### Step 5: GMM Update
+- Update GMMs based on new segmentation
+- Reclassify pixels
+
+#### Step 6: Iteration
+Repeat steps 3-5 until convergence.
+
+**Typical:** 5-10 iterations
+
+### Practical Applications
+
+#### Application 1: Interactive Image Segmentation
+**Dataset:** Natural images (animals, objects, people)
+
+**Tasks Performed:**
+1. Load color image
+2. Display image for user interaction
+3. User draws bounding rectangle around object
+4. Initialize GrabCut with rectangle coordinates
+5. Run GrabCut algorithm (iterative refinement)
+6. Extract binary mask
+7. Apply mask to original image
+8. Display segmented foreground object
+9. Optional: refine with additional user scribbles
+
+**Use Cases:**
+- Photo editing (background removal)
+- Object extraction
+- Image composition
+- Dataset annotation
+
+#### Application 2: Comparing Segmentation Modes
+**GrabCut Modes:**
+
+**GC_INIT_WITH_RECT:**
+Initialize with rectangle (single iteration)
+
+**GC_INIT_WITH_MASK:**
+Initialize with user-provided mask
+
+**GC_EVAL:**
+Refine existing segmentation
+
+**Tasks Performed:**
+1. Compare results with different initialization modes
+2. Evaluate convergence speed
+3. Analyze segmentation quality
+4. Test robustness to initialization
+
+### Energy Minimization in Segmentation
+
+**Total Energy:**
+E(segmentation) = Data Energy + Smooth Energy
+
+**Data Energy (Unary Terms):**
+Measures how well segmentation matches observed data:
+E_data = Σ_i D_i(l_i)
+
+Where:
+- l_i = label assignment for pixel i
+- D_i = cost of assigning label l_i to pixel i
+
+**Smoothness Energy (Pairwise Terms):**
+Encourages spatial coherence:
+E_smooth = Σ_(i,j)∈N V_ij(l_i, l_j)
+
+Where:
+- V_ij = penalty for assigning different labels to neighbors
+
+**Total Minimization:**
+Find labeling that minimizes total energy (NP-hard in general, but efficient approximations exist).
+
+### Graph Cut Algorithms
+
+**Ford-Fulkerson Method:**
+- Iteratively finds augmenting paths
+- Complexity: O(E × max_flow)
+
+**Push-Relabel Algorithm:**
+- More efficient for dense graphs
+- Complexity: O(V² × E)
+
+**Modern Implementations:**
+Highly optimized C++ code in OpenCV.
+
+### Extensions and Improvements
+
+**Interactive Refinement:**
+Users can add scribbles to correct mistakes:
+- Green scribbles: force foreground
+- Red scribbles: force background
+- Algorithm re-runs with updated constraints
+
+**Multi-Scale Processing:**
+Process at multiple resolutions for speed and accuracy.
+
+**Texture Features:**
+Incorporate texture in addition to color.
+
+**Deep Learning Enhancement:**
+Use CNN features instead of raw colors.
+
+### Python Libraries Used
+- `cv2` (OpenCV) for GrabCut implementation
+- `numpy` for array operations
+- `matplotlib.pyplot` for visualization
+- `wget` or `urllib` for downloading images
+
+### Key Takeaways
+1. Graph theory provides powerful framework for image segmentation
+2. GrabCut requires minimal user input (just a rectangle)
+3. Combines color models (GMM) with spatial coherence (graph cuts)
+4. Iterative refinement improves results
+5. Energy minimization framework generalizes to many problems
+6. Min-cut/max-flow algorithms enable efficient optimization
+7. Interactive refinement handles difficult cases
+8. Foundation for modern instance segmentation methods
+
+---
+
+## 10. T6 - Deep clustering con Keras
+
+### Overview
+This notebook introduces **deep clustering**, an advanced technique that combines deep neural networks with clustering algorithms to learn representations and cluster assignments simultaneously in an end-to-end manner.
+
+### Learning Objectives
+- Understand deep learning approaches to clustering
+- Learn autoencoder architectures for feature learning
+- Implement Deep Embedded Clustering (DEC)
+- Combine representation learning with clustering
+- Apply deep clustering to high-dimensional data (images)
+
+### Theoretical Foundation
+
+#### Traditional vs Deep Clustering
+
+**Traditional Clustering (e.g., K-Means):**
+- Works in original feature space
+- Features are hand-crafted or predefined
+- Separate feature engineering step
+- Limited to simple distance metrics
+
+**Deep Clustering:**
+- Learns features and clusters simultaneously
+- Features optimized for clustering task
+- End-to-end differentiable
+- Can capture complex, non-linear patterns
+
+**Key Advantage:** Feature representations are learned specifically to make data more separable for clustering.
+
+### Deep Embedded Clustering (DEC) Architecture
+
+**Three Main Components:**
+
+#### 1. Autoencoder (Feature Learning)
+**Purpose:** Learn compact, meaningful representations of input data.
+
+**Architecture:**
+- **Encoder:** Compresses input to low-dimensional bottleneck
+  - Input: 784 dimensions (28×28 MNIST images)
+  - Hidden layers: 784 → 500 → 500 → 2000 → 10
+- **Decoder:** Reconstructs input from bottleneck
+  - Hidden layers: 10 → 2000 → 500 → 500 → 784
+
+**Loss Function:** Mean Squared Error (reconstruction loss)
+L_autoencoder = ||x - x̂||²
+
+**Training:** Pre-train autoencoder to learn good representations before clustering.
+
+#### 2. Clustering Layer
+**Purpose:** Soft cluster assignment using Student's t-distribution.
+
+**Similarity Measure:**
+Student's t-distribution measures similarity between embedded point z_i and cluster centroid μ_j:
+
+q_ij = (1 + ||z_i - μ_j||² / α)^(-(α+1)/2) / Σ_j'(1 + ||z_i - μ_j'||² / α)^(-(α+1)/2)
+
+Where:
+- z_i = encoder output for sample i
+- μ_j = cluster centroid j
+- α = degrees of freedom (usually α=1)
+- q_ij = probability of sample i belonging to cluster j (soft assignment)
+
+**Why Student's t-distribution?**
+- Heavy-tailed: More robust to outliers than Gaussian
+- Similar to t-SNE: Proven effective for preserving local structure
+- Differentiable: Enables end-to-end training with backpropagation
+
+#### 3. Target Distribution (Self-Training)
+**Purpose:** Refine cluster assignments using auxiliary target distribution.
+
+**Target Distribution:**
+p_ij = q_ij² / Σ_i q_ij / Σ_j'(q_ij'² / Σ_i q_ij')
+
+**Intuition:**
+- Emphasizes high-confidence assignments (squaring)
+- Normalizes by cluster frequency (prevents large clusters from dominating)
+- Sharpens predictions iteratively
+
+**KL Divergence Loss:**
+Minimize divergence between soft assignments Q and target distribution P:
+
+L_clustering = KL(P||Q) = Σ_i Σ_j p_ij log(p_ij / q_ij)
+
+### Deep Clustering Algorithm (Step-by-Step)
+
+#### Phase 1: Autoencoder Pre-training
+
+**Step 1:** Build autoencoder architecture
+- Define encoder layers
+- Define decoder layers (symmetric)
+- Compile with MSE loss
+
+**Step 2:** Pre-train autoencoder
+- Train on reconstruction task
+- Input = Output (unsupervised)
+- Epochs: 200-300
+- Optimizer: SGD with momentum
+
+**Why Pre-train?**
+Provides good initialization for subsequent clustering; random initialization often fails.
+
+#### Phase 2: Cluster Initialization
+
+**Step 3:** Extract features using trained encoder
+z = encoder(X)
+
+**Step 4:** Initialize cluster centers with K-Means
+Run K-Means on encoded features to get initial centroids.
+
+#### Phase 3: Joint Optimization
+
+**Step 5:** Build complete DEC model
+- Encoder (frozen weights from pre-training)
+- Clustering layer (initialized with K-Means centroids)
+
+**Step 6:** Iterative refinement
+```
+For iteration in range(max_iterations):
+    1. Compute soft assignments Q
+    2. Compute target distribution P
+    3. Update model to minimize KL(P||Q)
+    4. Check convergence (label changes < threshold)
+```
+
+**Step 7:** Extract final cluster assignments
+y_pred = argmax(q_ij) for each sample i
+
+### Practical Application: MNIST Digit Clustering
+
+#### Dataset
+**MNIST:** 70,000 grayscale images of handwritten digits (0-9)
+- Training set: 60,000 images
+- Test set: 10,000 images
+- Image size: 28×28 pixels
+- Flattened: 784 features per image
+
+**Preprocessing:**
+1. Concatenate train and test sets (unsupervised learning)
+2. Flatten images: 28×28 → 784
+3. Normalize pixel values: [0, 255] → [0, 1]
+
+#### Tasks Performed
+
+**1. Baseline K-Means:**
+- Apply K-Means directly to raw pixel values
+- Evaluate clustering accuracy
+- Baseline performance: ~50-57%
+
+**2. Autoencoder Training:**
+- Build symmetric autoencoder (784→500→500→2000→10→2000→500→500→784)
+- Train for 300 epochs with SGD
+- Visualize reconstructed images
+- Verify feature learning quality
+
+**3. Deep Clustering:**
+- Initialize cluster centers with K-Means on encoded features
+- Attach clustering layer to encoder
+- Jointly optimize representation and cluster assignments
+- Iterative refinement (8,000 iterations max)
+- Monitor convergence and performance
+
+**4. Evaluation:**
+- **Clustering Accuracy:** Optimal assignment matching true labels
+- **Normalized Mutual Information (NMI):** Information shared between clusters and labels
+- **Adjusted Rand Index (ARI):** Similarity between cluster and label assignments
+
+**5. Visualization:**
+- t-SNE visualization of learned features
+- Cluster assignments in 2D space
+- Confusion matrix analysis
+- Sample images from each cluster
+
+#### Results
+**Typical Performance:**
+- K-Means (raw pixels): ~53% accuracy
+- K-Means (encoded features): ~65% accuracy  
+- Deep Clustering (DEC): ~82-87% accuracy
+
+**Improvement:** Deep clustering significantly outperforms traditional methods by learning task-specific features.
+
+### Implementation Details
+
+#### Autoencoder Optimization
+**Optimizer:** SGD with momentum
+- Learning rate: 1.0
+- Momentum: 0.9
+- Batch size: 256
+
+**Why SGD?**
+More stable than Adam for this task; high learning rate enables fast convergence.
+
+#### Clustering Layer Implementation
+**Custom Keras Layer:**
+```python
+class ClusteringLayer(Layer):
+    - Maintains cluster centers as trainable weights
+    - Computes student t-distribution similarities
+    - Returns soft cluster assignments
+```
+
+**Backend Compatibility:**
+- TensorFlow backend: Use tf.* operations
+- PyTorch backend: Use torch.* operations
+
+#### Training Stability
+**Convergence Criterion:**
+Stop when label changes < 0.1% (delta_label < 0.001)
+
+**Update Frequency:**
+Recompute target distribution every 140 iterations.
+
+**Batch Training:**
+Process mini-batches for memory efficiency.
+
+### Advantages of Deep Clustering
+
+1. **Joint Optimization:** Learns features tailored for clustering
+2. **Scalability:** Handles high-dimensional data effectively
+3. **Non-linearity:** Captures complex patterns via neural networks
+4. **End-to-end:** Single model from input to cluster assignments
+5. **Flexibility:** Can incorporate domain-specific architectures
+6. **Performance:** Often outperforms traditional methods significantly
+
+### Limitations and Considerations
+
+1. **Computational Cost:** Requires GPU for reasonable training times
+2. **Hyperparameters:** Many choices (architecture, learning rates, etc.)
+3. **Initialization Sensitivity:** Pre-training quality affects final results
+4. **Local Optima:** May converge to suboptimal solutions
+5. **Interpretability:** Learned features may be difficult to interpret
+
+### Extensions and Variants
+
+**Deep Clustering Variants:**
+- **JULE:** Joint Unsupervised LEarning
+- **DAC:** Deep Adaptive Clustering  
+- **SpectralNet:** Deep spectral clustering
+- **DEPICT:** DEeP clusterIng with ConvoluTional networks
+
+**Architecture Variations:**
+- Convolutional autoencoders (for images)
+- Variational autoencoders (VAE-based clustering)
+- Adversarial autoencoders (GAN-based)
+
+**Loss Function Enhancements:**
+- Adding reconstruction loss during clustering phase
+- Incorporating prior knowledge
+- Multi-view clustering with multiple autoencoders
+
+### Python Libraries Used
+- `keras` / `tensorflow` for deep learning
+- `keras.layers` (Dense, Input, custom layers)
+- `keras.models.Model`
+- `keras.optimizers.SGD`
+- `sklearn.cluster.KMeans` (initialization)
+- `sklearn.metrics` (NMI, ARI, clustering accuracy)
+- `numpy`, `matplotlib.pyplot`
+
+### Key Takeaways
+1. Deep clustering combines representation learning with clustering
+2. Autoencoder pre-training provides good feature initialization
+3. Student's t-distribution enables soft cluster assignments
+4. Self-training with target distribution refines clusters iteratively
+5. Joint optimization yields better results than separate steps
+6. Significantly outperforms traditional clustering on complex data
+7. Requires careful tuning and computational resources
+8. State-of-the-art approach for unsupervised learning on images and text
+
+---
+
+## Conclusion
+
+This comprehensive collection of notebooks provides a complete educational journey through unsupervised learning, covering:
+
+### Core Clustering Methods (T2.1-T2.5):
+- Partition-based (K-Means)
+- Hierarchical (Agglomerative)
+- Spectral (Graph-based)
+- Density-based (DBSCAN)
+- Probabilistic (GMM)
+
+### Advanced Techniques (T3-T6):
+- Semi-supervised learning
+- Dimensionality reduction (PCA, ICA)
+- Graph-based segmentation
+- Deep clustering
+
+### Key Learning Outcomes:
+1. **Theoretical Understanding:** Mathematical foundations of each method
+2. **Practical Skills:** Hands-on implementation with real datasets
+3. **Evaluation Expertise:** Metrics and validation techniques
+4. **Application Knowledge:** When to use which method
+5. **Implementation Proficiency:** Python libraries and best practices
+
+### Mathematical Concepts Covered:
+- Distance metrics and similarity measures
+- Eigenvalue decomposition and spectral analysis
+- Probability theory and statistical independence
+- Graph theory and energy minimization
+- Neural networks and deep learning optimization
+
+### Datasets and Applications:
+- Image data (MNIST, natural images)
+- Text data (20 Newsgroups)
+- Synthetic data (for concept illustration)
+- Signal processing (audio separation)
+- Computer vision (segmentation)
+
+This curriculum provides both breadth and depth in unsupervised learning, from foundational algorithms to state-of-the-art deep learning approaches, preparing students for real-world machine learning challenges.
+
+---
+
+**Document End**
+
+**Course:** Master in Artificial Intelligence - VIU
+**Module:** Aprendizaje No Supervisado (Unsupervised Learning)
+**Notebooks Covered:** T2.1, T2.2, T2.3, T2.4, T2.5, T3, T4.1, T4.2, T5, T6
