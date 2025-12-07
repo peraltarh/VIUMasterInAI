@@ -1,0 +1,270 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.11.15)  15 NOV 2025 20:41
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**notebook.tex
+(07MIAR_Proyecto_Programacion.ipynb
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2   "
+       cells": [
+? 
+Missing character: There is no " in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+! Missing $ inserted.
+<inserted text> 
+                $
+l.4       "cell_
+                type": "markdown",
+? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+! You can't use `macro parameter character #' in math mode.
+l.9         "#
+               07MIAR - Redes Neuronales y Deep Learning: Proyecto de progra...
+
+? 
+
+LaTeX Warning: Command \" invalid in math mode on input line 9.
+
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
+.
+(C:\Users\Rodri\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+LaTeX Warning: Command \" invalid in math mode on input line 9.
+
+LaTeX Font Info:    Trying to load font information for +lmr on input line 9.
+LaTeX Font Info:    No file lmr.fd. on input line 9.
+LaTeX Font Info:    Trying to load font information for +cmr on input line 9.
+LaTeX Font Info:    No file cmr.fd. on input line 9.
+
+LaTeX Font Warning: Font shape `/lmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 9.
+
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 9.
+
+! Corrupted NFSS tables.
+wrong@fontshape ...message {Corrupted NFSS tables}
+                                                  error@fontshape else let f...
+l.9 ...Deep Learning: Proyecto de programación \"*
+                                                  Deep Vision in classificat...
+
+? 
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `OT1/cmr/m/n' instead on input line 9.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.9 ...Deep Learning: Proyecto de programación \"*
+                                                  Deep Vision in classificat...
+
+? 
+! Missing { inserted.
+<to be read again> 
+                   \edef 
+l.9 ...Deep Learning: Proyecto de programación \"*
+                                                  Deep Vision in classificat...
+
+? 
+
+LaTeX Font Warning: Font shape `/lmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 9.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 9.
+
+! Undefined control sequence.
+<argument> \n 
+              
+l.9 ...\"*Deep Vision in classification tasks*\"\n
+                                                  "
+? 
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.9 ...\"*Deep Vision in classification tasks*\"\n
+                                                  "
+? 
+! Undefined control sequence.
+<argument> \n 
+              
+l.9 ...\"*Deep Vision in classification tasks*\"\n
+                                                  "
+? 
+! Missing { inserted.
+<to be read again> 
+                   \egroup 
+l.9 ...\"*Deep Vision in classification tasks*\"\n
+                                                  "
+? 
+! You can't use `macro parameter character #' in math mode.
+l.18         "#
+               # Enunciado\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.18         "##
+                 Enunciado\n",
+? 
+! Undefined control sequence.
+l.18         "## Enunciado\n
+                            ",
+? 
+! Undefined control sequence.
+l.19         "\n
+                ",
+? 
+! Undefined control sequence.
+l.20 ...po de tareas de inteligencia artificial:\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.21         "\n
+                ",
+? 
+! Undefined control sequence.
+l.22 ...   "1.   **Carga** del conjunto de datos\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.23 ....   **Inspección** del conjunto de datos\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.24 ...condicionamiento** del conjunto de datos\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.25 ...ronal y **entrenamiento** de la solución\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.26 ...trenamiento** para la toma de decisiones\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.27 ...ento de la siguiente prueba experimental\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.28         "\n
+                ",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.29         "#
+               ## Estrategia 1: Entrenar desde cero o *from scratch*\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.29         "##
+                # Estrategia 1: Entrenar desde cero o *from scratch*\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.29         "###
+                  Estrategia 1: Entrenar desde cero o *from scratch*\n",
+? 
+! Undefined control sequence.
+l.29 ... 1: Entrenar desde cero o *from scratch*\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.30         "\n
+                ",
+? 
+! Undefined control sequence.
+l.31 ...malization*, *data augmentation*, etc.).\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.32         "\n
+                ",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.33         "#
+               ## Estrategia 2: Red pre-entrenada\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.33         "##
+                # Estrategia 2: Red pre-entrenada\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.33         "###
+                  Estrategia 2: Red pre-entrenada\n",
+? 
+! Undefined control sequence.
+l.33 ...    "### Estrategia 2: Red pre-entrenada\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.34         "\n
+                ",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.44         "#
+               # Normas a seguir\n",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.44         "##
+                 Normas a seguir\n",
+? 
+! Undefined control sequence.
+l.44         "## Normas a seguir\n
+                                  ",
+? 
+! Undefined control sequence.
+l.45         "\n
+                ",
+? 
+! Undefined control sequence.
+l.46 ...ivo de facilitar el trabajo en equipo.  \n
+                                                  ",
+? 
+! Undefined control sequence.
+l.47 ...nto y proceso de validación del modelo).\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.48 ...idad que se habilitará **en CampusVIU**.\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.49 ...gar datos utilizando un directorio base.\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.50 ...trenar** supondrá **perdida de puntos**.\n
+                                                  ",
+? 
+! Undefined control sequence.
+l.51 ...rdida, etc.), estas deben ser generadas.\n
+                                                  ",
+? 
+! You can't use `macro parameter character #' in math mode.
+l.61         "#
+               # *Tips* para realizar la actividad con éxito\n",
+? 
